@@ -2,7 +2,7 @@
 
 ## Documentation
 
-Full documentation can be found here: [phase4space.github.io/p4xdmt_hw_prototype](https://phase4space.github.io/p4xdmt_hw_prototype).
+Full documentation can be found here: [phase4space.github.io/p4xdmt_hw_prototype](https://phase4space.github.io/p4xdmt_hw_protoype).
 
 ## TODO
 
