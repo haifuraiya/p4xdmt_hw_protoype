@@ -1,0 +1,838 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.5">
+    
+    
+      
+        <title>P4XT Transponder Characteristics - Phase4 - P4XDMT Hardware Prototype</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bde7dde4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ef6f36e2.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#p4xt-transponder-characteristics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Phase4 - P4XDMT Hardware Prototype" class="md-header__button md-logo" aria-label="Phase4 - P4XDMT Hardware Prototype" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Phase4 - P4XDMT Hardware Prototype
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              P4XT Transponder Characteristics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Phase4 - P4XDMT Hardware Prototype" class="md-nav__button md-logo" aria-label="Phase4 - P4XDMT Hardware Prototype" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Phase4 - P4XDMT Hardware Prototype
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        P4XDMT Hardware Prototype
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          P4XT Transponder Characteristics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        P4XT Transponder Characteristics
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    Purpose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    Scope
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    Description
+  </a>
+  
+    <nav class="md-nav" aria-label="Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-architecture" class="md-nav__link">
+    General Architecture
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uplink" class="md-nav__link">
+    Uplink
+  </a>
+  
+    <nav class="md-nav" aria-label="Uplink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction_1" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isochronous-operation" class="md-nav__link">
+    Isochronous Operation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channelization" class="md-nav__link">
+    Channelization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-correction" class="md-nav__link">
+    Error Correction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#framing" class="md-nav__link">
+    Framing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#narrowband-multiplex-ai-needs-work" class="md-nav__link">
+    Narrowband Multiplex (AI: Needs work)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downlink" class="md-nav__link">
+    Downlink
+  </a>
+  
+    <nav class="md-nav" aria-label="Downlink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction_2" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symbol-rates" class="md-nav__link">
+    Symbol Rates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modcod" class="md-nav__link">
+    MODCOD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frame-size" class="md-nav__link">
+    Frame Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pilots" class="md-nav__link">
+    Pilots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-filters-and-spectral-regroth" class="md-nav__link">
+    Output Filters and Spectral Regroth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      <label class="md-nav__link" for="__nav_3">
+        Clock and reset
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Clock and reset" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Clock and reset
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clock-and-reset/clock-and-reset-architecture/" class="md-nav__link">
+        Clock and Reset Architecture
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      <label class="md-nav__link" for="__nav_4">
+        Data interfaces
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Data interfaces" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Data interfaces
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-interfaces/data-interfaces-architecture/" class="md-nav__link">
+        Data Interfaces
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      <label class="md-nav__link" for="__nav_5">
+        Power
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Power" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Power
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power/lcl-design/" class="md-nav__link">
+        LCL Design
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../power/power-architecture/" class="md-nav__link">
+        Power Architecture
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    Purpose
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    Scope
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#description" class="md-nav__link">
+    Description
+  </a>
+  
+    <nav class="md-nav" aria-label="Description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-architecture" class="md-nav__link">
+    General Architecture
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uplink" class="md-nav__link">
+    Uplink
+  </a>
+  
+    <nav class="md-nav" aria-label="Uplink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction_1" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#isochronous-operation" class="md-nav__link">
+    Isochronous Operation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#channelization" class="md-nav__link">
+    Channelization
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-correction" class="md-nav__link">
+    Error Correction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#framing" class="md-nav__link">
+    Framing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#narrowband-multiplex-ai-needs-work" class="md-nav__link">
+    Narrowband Multiplex (AI: Needs work)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#downlink" class="md-nav__link">
+    Downlink
+  </a>
+  
+    <nav class="md-nav" aria-label="Downlink">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction_2" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symbol-rates" class="md-nav__link">
+    Symbol Rates
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modcod" class="md-nav__link">
+    MODCOD
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frame-size" class="md-nav__link">
+    Frame Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pilots" class="md-nav__link">
+    Pilots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-filters-and-spectral-regroth" class="md-nav__link">
+    Output Filters and Spectral Regroth
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="p4xt-transponder-characteristics">P4XT Transponder Characteristics</h1>
+<p>White Paper – May 26 2021
+Wally Ritchie (author)
+Michelle Thompson (blame)</p>
+<h2 id="introduction">Introduction</h2>
+<h3 id="purpose">Purpose</h3>
+<p>This paper provides preliminary information regarding the expected characteristics of the P4XT Digital Muliplexed Transponder (DMT). The primary purpose is to support analysis associated with link budgets. It should also be useful as a primer to the architecture of the DMT, especially when used in conjunction with the P4XT Workshop Presentation available from the ORI site at https://www.youtube.com/watch?v=fCmzS6jBhHg&amp;list=PLSfJ4B57S8Dk5bvXoJMnzkUXXheNBdIP1&amp;index=2</p>
+<p>Please find link budgets at https://github.com/phase4ground/documents/tree/master/Engineering/Link_Budget</p>
+<h3 id="scope">Scope</h3>
+<p>This document is preliminary and subject to change as the design progresses. Nevertheless, these characteristics are expected to be close to the final design with respect to link budgeting.</p>
+<h2 id="description">Description</h2>
+<h3 id="general-architecture">General Architecture</h3>
+<p>The DMT is designed to provide a relay service in geosynchronous orbit for Amateur Radio Satellite service earth stations. The design is all digital including digital only uplinks and a single digital downlink. The onboard multiplexors provide the digital uplink data and pass it through the single downlink.
+Although designed primarily for GEO, the DMT is also useful in HEO and other scenarios where symbol rates of around 0.4Mbaud to 8Mbaud are feasible. The DVB-S2 transmitter is useful over a wider range of symbol rates where different multiplexing schemes are more appropriate including non-relay applications.
+It is important to recognize that this architecture is radically different from that of a convention bent pipe transporter, whether regenerative or not. The DMT is a receiver – multiplexor – transmitter chain with processing that determines whether data is forwarded from uplink to downlink. Except for some special modes to support transfer of digitized analog uplink waveforms, only digital transmissions are supported which may carry real-time voice/data and IP packets.</p>
+<h2 id="uplink">Uplink</h2>
+<h3 id="introduction_1">Introduction</h3>
+<p>The receive subsystem has both narrowband and wideband multichannel receivers. We will focus on the narrowband receiver as this will be the one used by 99% or more or ordinary amateur radio stations. The digital uplink protocol is M17 protocol, with adaptations for space and wider bandwidth. The M17 protocol can be found here: https://m17-protocol-specification.readthedocs.io/en/latest/</p>
+<h2 id="isochronous-operation">Isochronous Operation</h2>
+<p>The narrowband multipler operates isochronously at TBD frames per second. A jitter buffer is required at the receiver which introduces a fixed 20ns - 40ms delay. Each frame is TBD ms.</p>
+<h2 id="channelization">Channelization</h2>
+<p>The basic narrowband channel spacing is expected to be 12.5 kHz with 160 channels. Each transmission must fit within the allocation. </p>
+<p>M17 standard uses 4FSK modulation running at 4800 symbols/s (9600 bits/s) with a deviation index h=0.33 for transmission in 9 kHz channel bandwidth. Channel spacing is 12.5 kHz.</p>
+<p>The key parameters are the implementation loss of the demodulation scheme, its raw bit rate, and its occupied bandwidth.</p>
+<h2 id="error-correction">Error Correction</h2>
+<p>Two distinct forward error correction schemes are used for different parts of the transmission in M17. The Link Setup Frame (LSF) is convolutionally encoded using rate 1/2 coder with constraint K=5, and the subsequent frames are punctured and encoded using a Golay (24, 12) code. This is a very high-level description of the forward error correction scheme, but gives an idea of code coverage and complexity. </p>
+<h2 id="framing">Framing</h2>
+<p>160 channels are provided occupying 2 MHz of uplink bandwidth. Note that wideband channels may occupy an additional 2MHz or more of bandwidth. (The bands are split in the front-end digital processing using FFTs). 160 channels can support 320 users in PTT mode and more than a thousand channels in NET mode. Essentially, idle stations are parked and gain the channel when the current occupant drops. This process is assisted by the protocols. Operation is also possible with 1 channel per user which supports 160 simultaneous users.</p>
+<h2 id="narrowband-multiplex-ai-needs-work">Narrowband Multiplex (AI: Needs work)</h2>
+<p>~~The NBM is transparent to the receivers as long as the basic parameters are met. Once the transmission is authenticated, the payload bits (e.g. 96) plus 2 label bits are passed to the NBM. The label bits allow the multiplex to signal primary or second data (e.g. voice data) and payload/control). This allows the NBM to insert common data e.g. telemetry and logs when the frame contains no data. The authenticated call sign is inserted in the control data in conformance with local administration (e.g. FCC) rules.
+The NBM allocates channels as Nx800 payloads. Each 800 bits occupies 32 bits of the downlink. A 2400 bps channel requires three 32 bit words. Labels are outside the payload with 2 bits per channel packed into 32-bit words. This allows receivers to know the location and label for each channel to find the channels of interest. 160 active channels produce 15360 payload bits plus 320 label bits for 15680 data bits. Additional control bits define the channel format. ~~</p>
+<p>Each channel has a dedicated data rate. Users must select channels of the desired bandwidth. This can change on the fly based on demand but not more than once per 25 frame superframe (1 second).</p>
+<p>The NBM always produces N DVB-S2 BBFRAMES each 40 ms cycle. The number depends on the allocated narrowband bandwith (in bits). About 40 2400 bit channels can be accommodated per frame and they appear in the downlink as a UDP packet encapsulated with GSE. The use of UDP allows simulation of the multiplexor through the internet. </p>
+<h2 id="downlink">Downlink</h2>
+<h3 id="introduction_2">Introduction</h3>
+<p>The single downlink fully complies with the DVB-S2 standard. This is a complex standard with a myriad of configuration options. We use a subset tailored to our application. </p>
+<h3 id="symbol-rates">Symbol Rates</h3>
+<p>The downlink operates at a fixed symbol rate, typically between 1 Mbaud and 8 Mbaud. The rate can be changed from time to time but this is not a hitless operation. The major tradeoff is symbol rate vs downlink CN. This depends primarily on transmit power and earth station antenna size.</p>
+<h3 id="modcod">MODCOD</h3>
+<p>In DVB-S2 the modulation and coding can be changed frame to frame. This allows a mix of earth station performance with ¼ QPSK at the low end and 8PSK 8/9 at the upper end (for non-linear transmitters). It is desirable. The basic design parameters are how many BBFRAMES are allocated to the NBM per 40ms window. Remaining capacity is allocated to the wideband channels. </p>
+<h3 id="frame-size">Frame Size</h3>
+<p>DVB-S2 allows 16200 or 64800 bits (not symbols) for BBFRAMES. For maximum flexibility we use only the short frame size. </p>
+<h3 id="pilots">Pilots</h3>
+<p>DVB-S2 allows each frame to include pilots or not. We always use pilot on to ease the burder on the receiver when skipping over BBFRAMES with MODCODs outside the earth station's capability. </p>
+<h3 id="output-filters-and-spectral-regroth">Output Filters and Spectral Regroth</h3>
+<p>The output filter allows rollofs from .15 to .35. We normally use the largest setting. In addition, we must allow for spectrum regrowth when using non-linear output stages. This can be modelled as part of the implementation loss of the transmitter and is typically as much as 3dB. This is offset by the gain in DC efficiency.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href=".." class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              P4XDMT Hardware Prototype
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../clock-and-reset/clock-and-reset-architecture/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Clock and Reset Architecture
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a1609d9a.min.js"></script>
+      
+    
+  </body>
+</html>
