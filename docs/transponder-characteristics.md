@@ -5,10 +5,12 @@ Wally Ritchie
 ## Introduction
 
 ### Purpose
-This paper provides preliminary information regarding the expected characteristics of the P4XT Digital Muliplexed Transponder (DMT). The primary purpose is to support analysis associated with link budgets. It should also be useful as a primer to the architecture of the DMT, especially when used in conjunction with the P4XT Workshop Presentation available from the ORI site at .
+This paper provides preliminary information regarding the expected characteristics of the P4XT Digital Muliplexed Transponder (DMT). The primary purpose is to support analysis associated with link budgets. It should also be useful as a primer to the architecture of the DMT, especially when used in conjunction with the P4XT Workshop Presentation available from the ORI site at https://www.youtube.com/watch?v=fCmzS6jBhHg&list=PLSfJ4B57S8Dk5bvXoJMnzkUXXheNBdIP1&index=2
+
+Please find link budgets at https://github.com/phase4ground/documents/tree/master/Engineering/Link_Budget
 
 ### Scope
-This document provides preliminary information that should be understood as provisional and subject to change as the design progresses. Nevertheless, these characteristics are expected to be close to the final design with respect to link budgeting.
+This document is preliminary and subject to change as the design progresses. Nevertheless, these characteristics are expected to be close to the final design with respect to link budgeting.
 
 ## Description
 
@@ -22,31 +24,36 @@ It is important to recognize that this architecture is radically different from 
 
 ### Introduction
 
-The receive subsystem has both narrowband and wideband multichannel receivers. We will focus on the narrowband receiver as this will be the one used by 99% or more or ordinary amateur radio stations.
+The receive subsystem has both narrowband and wideband multichannel receivers. We will focus on the narrowband receiver as this will be the one used by 99% or more or ordinary amateur radio stations. The digital uplink protocol is M17 protocol, with adaptations for space and wider bandwidth. The M17 protocol can be found here: https://m17-protocol-specification.readthedocs.io/en/latest/
 
 ## Isochronous Operation
 
-The narrowband multiplexor operates isochronously at 25 frames per second. A jitter buffer is required at the receiver which introduces a fixed 20ns - 40ms delay. Each frame is 40ms which is compatible or adaptable for most modern codecs.
+The narrowband multipler operates isochronously at TBD frames per second. A jitter buffer is required at the receiver which introduces a fixed 20ns - 40ms delay. Each frame is TBD ms.
 
 ## Channelization
 
-The basic narrowband channel spacing is expected to be 12.5 kHz with 160 channels. Each transmission must fit within the allocation. The baseline modulation is QPSK at 2500 symbols per second. This results in a raw bit rate of 5000 bps. Note that alternatives to QPSK are under review and are likely - so this is just a baseline. The key parameters are the implementation loss of the demodulation scheme, its raw bit rate, and its occupied bandwidth. 
+The basic narrowband channel spacing is expected to be 12.5 kHz with 160 channels. Each transmission must fit within the allocation. 
+
+M17 standard uses 4FSK modulation running at 4800 symbols/s (9600 bits/s) with a deviation index h=0.33 for transmission in 9 kHz channel bandwidth. Channel spacing is 12.5 kHz.
+
+The key parameters are the implementation loss of the demodulation scheme, its raw bit rate, and its occupied bandwidth.
 
 ## Error Correction
 
-While the downlink is quasi error free, the uplinks may operate for some application with error rate approaching 1%. These are suitable for voice. IP data may require higher performance. 
-The baseline coding is convolutional coding supporting at least ½ and ¾ rates (with ¼ desirable).
+Two distinct forward error correction schemes are used for different parts of the transmission in M17. The Link Setup Frame (LSF) is convolutionally encoded using rate 1/2 coder with constraint K=5, and the subsequent frames are punctured and encoded using a Golay (24, 12) code. This is a very high-level description of the forward error correction scheme, but gives an idea of code coverage and complexity. 
+
 
 ## Framing
 
-The uplink is framed at the 25 frame per second rate resulting in a frame size of 100 symbols or 100 raw bits at ½ fec. This rate provides 96 payload bits plus 4 control bits that can be passed to the multiplex and/or controller. The 96 payload bits provide 2400 bps of error corrected bandwidth. The ¾ rate fec extends this to 3600 bps and the ¼ rate fec reduces it to 1200 bps.  These are all in the range of data rates useful in amateur digital voice and data applications in HF and VHF. With current codec technologies (e.g. LPCNet + Codec2), performance far exceeding that of the codecs deployed in amateur digital radio is viable. The symbol rate can be doubled to double the payloads to 2400, 4800, and 7200 bps which can provide high quality wideband voice. Note that these are real-time conversational modes. Arbitrarily high voice quality can be achieved using store-and-forward messaging modes. 
-160 channels are provided occupying 2 MHz of uplink bandwidth. Note that wideband channels may occupy an additional 2MHz or more of bandwidth. (The bands are split in the front-end digital processing using FFTs). 160 channels can support 320 users in PTT mode and more than a thousand channels in NET mode. Essentially, idle stations are parked and gain the channel when the current occupant drops. This process is assisted by the protocols. Operation is also possible with 1 channel per user which supports 160 simultaneous users for Fox-like operation.
+160 channels are provided occupying 2 MHz of uplink bandwidth. Note that wideband channels may occupy an additional 2MHz or more of bandwidth. (The bands are split in the front-end digital processing using FFTs). 160 channels can support 320 users in PTT mode and more than a thousand channels in NET mode. Essentially, idle stations are parked and gain the channel when the current occupant drops. This process is assisted by the protocols. Operation is also possible with 1 channel per user which supports 160 simultaneous users.
 
-## Narrowband Multiplex
+## Narrowband Multiplex (AI: Needs work) 
 
-The NBM is transparent to the receivers as long as the basic parameters are met. Basically, the receiver makes available, for each channel, N bits per frame plus a two bit label. Once the transmission is authenticated, the payload bits (e.g. 96) plus 2 label bits are passed to the NBM. The label bits allow the multiplex to signal primary or second data (e.g. voice data) and payload/control). This allows the NBM to insert common data e.g. telemetry and logs when the frame contains no data. The authenticated call sign is inserted in the control data in conformance with local administration (e.g. FCC) rules.
-The NBM allocates channels as Nx800 payloads. Each 800 bits occupies 32 bits of the downlink. A 2400 bps channel requires three 32 bit words. Labels are outside the payload with 2 bits per channel packed into 32-bit words. This allows receivers to know the location and label for each channel to find the channels of interest. 160 active channels produce 15360 payload bits plus 320 label bits for 15680 data bits. Additional control bits define the channel format. 
+~~The NBM is transparent to the receivers as long as the basic parameters are met. Once the transmission is authenticated, the payload bits (e.g. 96) plus 2 label bits are passed to the NBM. The label bits allow the multiplex to signal primary or second data (e.g. voice data) and payload/control). This allows the NBM to insert common data e.g. telemetry and logs when the frame contains no data. The authenticated call sign is inserted in the control data in conformance with local administration (e.g. FCC) rules.
+The NBM allocates channels as Nx800 payloads. Each 800 bits occupies 32 bits of the downlink. A 2400 bps channel requires three 32 bit words. Labels are outside the payload with 2 bits per channel packed into 32-bit words. This allows receivers to know the location and label for each channel to find the channels of interest. 160 active channels produce 15360 payload bits plus 320 label bits for 15680 data bits. Additional control bits define the channel format. ~~
+
 Each channel has a dedicated data rate. Users must select channels of the desired bandwidth. This can change on the fly based on demand but not more than once per 25 frame superframe (1 second).
+
 The NBM always produces N DVB-S2 BBFRAMES each 40 ms cycle. The number depends on the allocated narrowband bandwith (in bits). About 40 2400 bit channels can be accommodated per frame and they appear in the downlink as a UDP packet encapsulated with GSE. The use of UDP allows simulation of the multiplexor through the internet. 
 
 ## Downlink
