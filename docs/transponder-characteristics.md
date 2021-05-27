@@ -1,6 +1,7 @@
 # P4XT Transponder Characteristics
-White Paper – May 24 2021
-Wally Ritchie
+White Paper – May 26 2021
+Wally Ritchie (author)
+Michelle Thompson (blame)
 
 ## Introduction
 
